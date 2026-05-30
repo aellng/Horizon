@@ -35,9 +35,9 @@
 
 ## 必须配置的 GitHub Secret
 
-至少需要配置一个 AI 模型密钥。当前默认使用 OpenAI：
+至少需要配置一个 AI 模型密钥。当前默认使用 DeepSeek：
 
-- `OPENAI_API_KEY`
+- `DEEPSEEK_API_KEY`
 
 进入仓库：Settings -> Secrets and variables -> Actions -> New repository secret。
 
@@ -45,7 +45,7 @@
 
 - `HORIZON_WEBHOOK_URL`：飞书/钉钉/Slack 等 Webhook 推送地址。
 - `APIFY_TOKEN`：如果以后启用 Twitter/X 抓取，需要这个。
-- `ANTHROPIC_API_KEY`、`GOOGLE_API_KEY`、`MINIMAX_API_KEY`、`DASHSCOPE_API_KEY`：如果以后切换模型供应商再配置。
+- `OPENAI_API_KEY`、`ANTHROPIC_API_KEY`、`GOOGLE_API_KEY`、`MINIMAX_API_KEY`、`DASHSCOPE_API_KEY`：如果以后切换模型供应商再配置。
 
 ## 运行方式
 
