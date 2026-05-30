@@ -1,9 +1,9 @@
 {
   "version": "1.0",
   "ai": {
-    "provider": "openai",
-    "model": "gpt-4",
-    "api_key_env": "OPENAI_API_KEY",
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "api_key_env": "DEEPSEEK_API_KEY",
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 0,
@@ -258,7 +258,13 @@
     },
     "twitter": {
       "enabled": false,
-      "users": ["karpathy", "sama", "demishassabis", "simonw", "ylecun"],
+      "users": [
+        "karpathy",
+        "sama",
+        "demishassabis",
+        "simonw",
+        "ylecun"
+      ],
       "fetch_limit": 10,
       "fetch_reply_text": false,
       "max_replies_per_tweet": 3,
@@ -274,8 +280,19 @@
     "ossinsight": {
       "enabled": false,
       "period": "past_24_hours",
-      "languages": ["All", "Python", "TypeScript"],
-      "keywords": ["ai", "llm", "agent", "rag", "mcp", "diffusion"],
+      "languages": [
+        "All",
+        "Python",
+        "TypeScript"
+      ],
+      "keywords": [
+        "ai",
+        "llm",
+        "agent",
+        "rag",
+        "mcp",
+        "diffusion"
+      ],
       "min_stars": 50,
       "max_items": 30
     }
