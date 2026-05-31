@@ -138,3 +138,24 @@ def test_generate_empty_summary_zh_uses_localized_analyzed_line():
 
     assert "> 已分析 10 条内容，但没有达到重要性阈值的条目。" in result
     assert "Analyzed 10 items" not in result
+
+
+def test_generate_summary_zh_adds_creator_conclusion_and_publish_topics():
+    summarizer = DailySummarizer()
+    items = [_make_item(1), _make_item(2), _make_item(3), _make_item(4)]
+
+    result = _run_async(
+        summarizer.generate_summary(
+            items,
+            date="2026-04-25",
+            total_fetched=10,
+            language="zh",
+        )
+    )
+
+    assert "## 今日结论" in result
+    assert "## 最值得发的 3 个选题" in result
+    assert "### 选题 1：Important Item 1" in result
+    assert "**切入角度**: Summary for item 1." in result
+    assert "### 选题 3：Important Item 3" in result
+    assert "### 选题 4：" not in result

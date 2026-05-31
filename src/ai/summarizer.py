@@ -25,6 +25,14 @@ LABELS = {
         "discussion": "Discussion",
         "references": "References",
         "tags": "Tags",
+        "daily_conclusion": "Today's Conclusion",
+        "publish_topics": "{count} Topics Worth Publishing",
+        "focus_intro": "Today's most valuable signals are concentrated in: {topics}.",
+        "follow_up_intro": "For content creation, prioritize these {count} directions:",
+        "topic": "Topic {index}",
+        "related_news": "Related news",
+        "angle": "Suggested angle",
+        "extension": "Further direction",
         "selected_items": "From {total} items, {selected} important content pieces were selected",
         "empty_analyzed": "Analyzed {total} items, but none met the importance threshold.",
         "empty_body": (
@@ -45,6 +53,14 @@ LABELS = {
         "discussion": "社区讨论",
         "references": "参考链接",
         "tags": "标签",
+        "daily_conclusion": "今日结论",
+        "publish_topics": "最值得发的 {count} 个选题",
+        "focus_intro": "今天最值得继续跟进的信号集中在：{topics}。",
+        "follow_up_intro": "面向 AI 自媒体创作，可以优先关注以下 {count} 个方向：",
+        "topic": "选题 {index}",
+        "related_news": "关联新闻",
+        "angle": "切入角度",
+        "extension": "可延展方向",
         "selected_items": "从 {total} 条内容中筛选出 {selected} 条重要资讯。",
         "empty_analyzed": "已分析 {total} 条内容，但没有达到重要性阈值的条目。",
         "empty_body": (
@@ -111,7 +127,62 @@ class DailySummarizer:
 
         parts = [self._format_item(item, labels, language, i + 1) for i, item in enumerate(items)]
 
-        return header + toc + "".join(parts)
+        editorial = self._format_editorial_sections(items, labels, language)
+
+        return header + editorial + toc + "".join(parts)
+
+    def _format_editorial_sections(self, items: List[ContentItem], labels: dict, language: str) -> str:
+        """Render a compact creator-oriented conclusion and publishing shortlist."""
+        selected = items[:3]
+        tags = []
+        for item in selected:
+            for tag in item.ai_tags:
+                if tag not in tags:
+                    tags.append(tag)
+        focus = "、".join(tags[:5]) if language == "zh" else ", ".join(tags[:5])
+        if not focus:
+            focus = "AI 行业动态" if language == "zh" else "AI industry developments"
+
+        conclusion = [
+            f"## {labels['daily_conclusion']}",
+            "",
+            labels["focus_intro"].format(topics=focus),
+            "",
+            labels["follow_up_intro"].format(count=len(selected)),
+        ]
+        topic_sections = [
+            f"## {labels['publish_topics'].format(count=len(selected))}",
+            "",
+        ]
+
+        for index, item in enumerate(selected, start=1):
+            title = str(item.metadata.get(f"title_{language}") or item.title)
+            summary = (
+                item.metadata.get(f"detailed_summary_{language}")
+                or item.metadata.get("detailed_summary")
+                or item.ai_summary
+                or title
+            )
+            background = item.metadata.get(f"background_{language}") or item.metadata.get("background") or ""
+            if language == "zh":
+                title = _pangu(title)
+                summary = _pangu(summary)
+                background = _pangu(background)
+
+            conclusion.append(f"{index}. **[{title}]({item.url})**")
+            topic_sections += [
+                f"### {labels['topic'].format(index=index)}：{title}" if language == "zh"
+                else f"### {labels['topic'].format(index=index)}: {title}",
+                "",
+                f"**{labels['related_news']}**: [{title}]({item.url})",
+                "",
+                f"**{labels['angle']}**: {summary}",
+            ]
+            if background:
+                topic_sections += ["", f"**{labels['extension']}**: {background}"]
+            topic_sections += ["", "---", ""]
+
+        return "\n".join(conclusion + ["", "---", ""] + topic_sections) + "\n"
 
     def generate_webhook_overview(
         self,
