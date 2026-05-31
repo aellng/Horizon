@@ -13,6 +13,32 @@ _CREATOR_TOPIC_SIGNAL_GROUPS = (
     ("llm", "qwen", "stable diffusion", "flux"),
     ("machine learning", "pytorch"),
 )
+_A_SHARE_THEME_RULES = (
+    {
+        "name": "AI Agent 与办公软件",
+        "signals": ("agent", "claude", "codex", "gpt", "office", "wps", "productivity"),
+        "impact": "企业级 AI Agent 落地、办公软件智能化和软件订阅模式变化，可能提升 AI 应用层与办公软件方向的市场关注度。",
+        "stocks": ("金山办公（688111.SH）", "科大讯飞（002230.SZ）"),
+    },
+    {
+        "name": "AI 安全与软件治理",
+        "signals": ("sandbox", "sandboxing", "security", "安全", "gvisor", "bubblewrap", "seatbelt"),
+        "impact": "Agent 权限隔离、数据泄露防护和企业安全治理成为落地前提，可能增加网络安全与安全服务方向的讨论热度。",
+        "stocks": ("奇安信（688561.SH）", "启明星辰（002439.SZ）"),
+    },
+    {
+        "name": "算力芯片与服务器",
+        "signals": ("llm", "local-llm", "gpu", "inference", "qwen", "quantization", "nvidia", "server", "算力"),
+        "impact": "本地模型部署、推理成本和算力效率讨论升温，可能使市场继续关注 AI 芯片、服务器与算力基础设施。",
+        "stocks": ("寒武纪（688256.SH）", "浪潮信息（000977.SZ）", "中科曙光（603019.SH）"),
+    },
+    {
+        "name": "AI 创作工具",
+        "signals": ("stable diffusion", "flux", "prompt", "image generation", "audio ai", "creative tools"),
+        "impact": "图像、视频、音频与提示工程工具迭代，可能提升 AI 内容生产和创意软件方向的关注度。",
+        "stocks": ("万兴科技（300624.SZ）", "昆仑万维（300418.SZ）"),
+    },
+)
 
 
 def _pangu(text: str) -> str:
@@ -66,6 +92,10 @@ LABELS = {
         "related_news": "关联新闻",
         "angle": "切入角度",
         "extension": "可延展方向",
+        "a_share_analysis": "A 股影响参考",
+        "related_signal": "关联热点",
+        "possible_impact": "可能影响",
+        "example_stocks": "示例股票",
         "selected_items": "从 {total} 条内容中筛选出 {selected} 条重要资讯。",
         "empty_analyzed": "已分析 {total} 条内容，但没有达到重要性阈值的条目。",
         "empty_body": (
@@ -191,7 +221,62 @@ class DailySummarizer:
                 topic_sections += ["", f"**{labels['extension']}**: {background}"]
             topic_sections += ["", "---", ""]
 
-        return "\n".join(conclusion + ["", "---", ""] + topic_sections) + "\n"
+        financial_analysis = self._format_a_share_analysis(items, labels, language)
+        return "\n".join(conclusion + ["", "---", ""]) + financial_analysis + "\n".join(topic_sections) + "\n"
+
+    def _format_a_share_analysis(self, items: List[ContentItem], labels: dict, language: str) -> str:
+        """Render A-share research leads for Chinese creator briefings."""
+        if language != "zh":
+            return ""
+
+        matched_themes = []
+        for theme in _A_SHARE_THEME_RULES:
+            related_item = next(
+                (
+                    item
+                    for item in items
+                    if any(signal in self._item_search_text(item) for signal in theme["signals"])
+                ),
+                None,
+            )
+            if related_item:
+                matched_themes.append((theme, related_item))
+            if len(matched_themes) == 3:
+                break
+
+        if not matched_themes:
+            return ""
+
+        lines = [
+            f"## {labels['a_share_analysis']}",
+            "",
+            "> 仅作内容研究线索，不构成投资建议。热点相关性不等于股价必然上涨，请结合上市公司公告、业绩、估值与市场风险自行判断。",
+            "",
+        ]
+        for index, (theme, item) in enumerate(matched_themes, start=1):
+            title = _pangu(str(item.metadata.get("title_zh") or item.title))
+            lines += [
+                f"### {index}. {theme['name']}",
+                "",
+                f"- **{labels['related_signal']}**: [{title}]({item.url})",
+                f"- **{labels['possible_impact']}**: {theme['impact']}",
+                f"- **{labels['example_stocks']}**: {'、'.join(theme['stocks'])}",
+                "",
+            ]
+        return "\n".join(lines + ["---", ""]) + "\n"
+
+    def _item_search_text(self, item: ContentItem) -> str:
+        """Build normalized text used for deterministic topic matching."""
+        metadata = item.metadata
+        parts = [
+            item.title,
+            item.ai_summary or "",
+            *item.ai_tags,
+            str(metadata.get("title_zh") or ""),
+            str(metadata.get("detailed_summary_zh") or metadata.get("detailed_summary") or ""),
+            str(metadata.get("background_zh") or metadata.get("background") or ""),
+        ]
+        return " ".join(parts).casefold()
 
     def _select_publish_topics(self, items: List[ContentItem]) -> List[ContentItem]:
         """Prefer AI-related items for the creator shortlist, then fill by score."""

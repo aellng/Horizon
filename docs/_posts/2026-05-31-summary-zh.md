@@ -20,6 +20,30 @@ lang: zh
 
 ---
 
+## A 股影响参考
+
+> 仅作内容研究线索，不构成投资建议。热点相关性不等于股价必然上涨，请结合上市公司公告、业绩、估值与市场风险自行判断。
+
+### 1. AI Agent 与办公软件
+
+- **关联热点**: [Anthropic 详解 Claude 智能体沙箱隔离](https://simonwillison.net/2026/May/30/how-we-contain-claude/#atom-everything)
+- **可能影响**: 企业级 AI Agent 落地、办公软件智能化和软件订阅模式变化，可能提升 AI 应用层与办公软件方向的市场关注度。
+- **示例股票**: 金山办公（688111.SH）、科大讯飞（002230.SZ）
+
+### 2. AI 安全与软件治理
+
+- **关联热点**: [Anthropic 详解 Claude 智能体沙箱隔离](https://simonwillison.net/2026/May/30/how-we-contain-claude/#atom-everything)
+- **可能影响**: Agent 权限隔离、数据泄露防护和企业安全治理成为落地前提，可能增加网络安全与安全服务方向的讨论热度。
+- **示例股票**: 奇安信（688561.SH）、启明星辰（002439.SZ）
+
+### 3. 算力芯片与服务器
+
+- **关联热点**: [本地 LLM 服务器成本分析：6.4 千美元服务器](https://www.reddit.com/r/LocalLLaMA/comments/1tsbl9j/cost_analysis_of_my_64k_local_llm_server/)
+- **可能影响**: 本地模型部署、推理成本和算力效率讨论升温，可能使市场继续关注 AI 芯片、服务器与算力基础设施。
+- **示例股票**: 寒武纪（688256.SH）、浪潮信息（000977.SZ）、中科曙光（603019.SH）
+
+---
+
 ## 最值得发的 3 个选题
 
 ### 选题 1：领域专业知识仍是关键差异化因素

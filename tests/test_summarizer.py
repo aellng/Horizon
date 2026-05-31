@@ -205,3 +205,31 @@ def test_generate_summary_prioritizes_creator_story_then_llm_then_ml_technical_t
 
     assert result.index("### 选题 1：Claude Agent Sandbox") < result.index("### 选题 2：Local LLM Cost Analysis")
     assert result.index("### 选题 2：Local LLM Cost Analysis") < result.index("### 选题 3：PyTorch Debugger")
+
+
+def test_generate_summary_zh_adds_a_share_research_leads_with_risk_note():
+    summarizer = DailySummarizer()
+    agent = _make_item(1)
+    agent.title = "Claude Agent Sandbox"
+    agent.ai_tags = ["Claude", "agent", "sandboxing"]
+    local_llm = _make_item(2)
+    local_llm.title = "Local LLM Cost Analysis"
+    local_llm.ai_tags = ["local-llm", "gpu", "hardware"]
+
+    result = _run_async(
+        summarizer.generate_summary(
+            [agent, local_llm],
+            date="2026-04-25",
+            total_fetched=2,
+            language="zh",
+        )
+    )
+
+    assert "## A 股影响参考" in result
+    assert "不构成投资建议" in result
+    assert "### 1. AI Agent 与办公软件" in result
+    assert "金山办公（688111.SH）" in result
+    assert "### 2. AI 安全与软件治理" in result
+    assert "奇安信（688561.SH）" in result
+    assert "### 3. 算力芯片与服务器" in result
+    assert "寒武纪（688256.SH）" in result
