@@ -4,9 +4,7 @@
     "provider": "deepseek",
     "model": "deepseek-v4-flash",
     "api_key_env": "DEEPSEEK_API_KEY",
-    "languages": [
-      "zh"
-    ],
+    "languages": ["zh"],
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 0,
@@ -20,114 +18,22 @@
     "imap_server": "imap.qq.com",
     "imap_port": 993,
     "email_address": "xxx@qq.com",
-    "sender_name": "Horizon Daily",
+    "sender_name": "AI 视频创作日报",
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
   },
   "sources": {
     "github": [
-      {
-        "type": "user_events",
-        "username": "simonw",
-        "enabled": true
-      },
-      {
-        "type": "user_events",
-        "username": "karpathy",
-        "enabled": true
-      },
-      {
-        "type": "user_events",
-        "username": "huyenchip",
-        "enabled": true
-      },
-      {
-        "type": "user_events",
-        "username": "rasbt",
-        "enabled": true
-      },
-      {
-        "type": "user_events",
-        "username": "eugeneyan",
-        "enabled": true
-      },
-      {
-        "type": "user_events",
-        "username": "jerryjliu",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "openai",
-        "repo": "openai-python",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "openai",
-        "repo": "openai-cookbook",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "anthropics",
-        "repo": "anthropic-sdk-python",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "anthropics",
-        "repo": "claude-cookbooks",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "ollama",
-        "repo": "ollama",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "vllm-project",
-        "repo": "vllm",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "huggingface",
-        "repo": "transformers",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "huggingface",
-        "repo": "smolagents",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "langchain-ai",
-        "repo": "langchain",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "langchain-ai",
-        "repo": "langgraph",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "run-llama",
-        "repo": "llama_index",
-        "enabled": true
-      },
-      {
-        "type": "repo_releases",
-        "owner": "modelcontextprotocol",
-        "repo": "servers",
-        "enabled": true
-      }
+      {"type": "repo_releases", "owner": "Comfy-Org", "repo": "ComfyUI", "enabled": true},
+      {"type": "repo_releases", "owner": "Wan-Video", "repo": "Wan2.1", "enabled": true},
+      {"type": "repo_releases", "owner": "Tencent-Hunyuan", "repo": "HunyuanVideo", "enabled": true},
+      {"type": "repo_releases", "owner": "Lightricks", "repo": "LTX-Video", "enabled": true},
+      {"type": "repo_releases", "owner": "THUDM", "repo": "CogVideo", "enabled": true},
+      {"type": "repo_releases", "owner": "hpcaitech", "repo": "Open-Sora", "enabled": true},
+      {"type": "repo_releases", "owner": "KwaiVGI", "repo": "LivePortrait", "enabled": true},
+      {"type": "repo_releases", "owner": "Rudrabha", "repo": "Wav2Lip", "enabled": true},
+      {"type": "repo_releases", "owner": "huggingface", "repo": "diffusers", "enabled": true},
+      {"type": "repo_releases", "owner": "huggingface", "repo": "transformers", "enabled": true}
     ],
     "hackernews": {
       "enabled": true,
@@ -135,139 +41,25 @@
       "min_score": 80
     },
     "rss": [
-      {
-        "name": "OpenAI News",
-        "url": "https://openai.com/news/rss.xml",
-        "enabled": true,
-        "category": "ai-official"
-      },
-      {
-        "name": "Hugging Face Blog",
-        "url": "https://huggingface.co/blog/feed.xml",
-        "enabled": true,
-        "category": "ai-creator-tools"
-      },
-      {
-        "name": "Google AI Blog",
-        "url": "https://blog.google/technology/ai/rss/",
-        "enabled": true,
-        "category": "ai-official"
-      },
-      {
-        "name": "Google DeepMind Blog",
-        "url": "https://deepmind.google/blog/rss.xml",
-        "enabled": true,
-        "category": "ai-research"
-      },
-      {
-        "name": "Simon Willison",
-        "url": "https://simonwillison.net/atom/everything/",
-        "enabled": true,
-        "category": "ai-blogger"
-      },
-      {
-        "name": "Lilian Weng",
-        "url": "https://lilianweng.github.io/index.xml",
-        "enabled": true,
-        "category": "ai-research-blogger"
-      },
-      {
-        "name": "Chip Huyen",
-        "url": "https://huyenchip.com/feed.xml",
-        "enabled": true,
-        "category": "ai-blogger"
-      },
-      {
-        "name": "Eugene Yan",
-        "url": "https://eugeneyan.com/rss/",
-        "enabled": true,
-        "category": "ai-blogger"
-      },
-      {
-        "name": "Jay Alammar",
-        "url": "https://jalammar.github.io/feed.xml",
-        "enabled": true,
-        "category": "ai-education-creator"
-      },
-      {
-        "name": "Sebastian Raschka",
-        "url": "https://sebastianraschka.com/rss_feed.xml",
-        "enabled": true,
-        "category": "ai-education-creator"
-      },
-      {
-        "name": "Latent Space",
-        "url": "https://www.latent.space/feed",
-        "enabled": true,
-        "category": "ai-creator-community"
-      },
-      {
-        "name": "Interconnects",
-        "url": "https://www.interconnects.ai/feed",
-        "enabled": true,
-        "category": "ai-blogger"
-      },
-      {
-        "name": "The Gradient",
-        "url": "https://thegradient.pub/rss/",
-        "enabled": true,
-        "category": "ai-research-media"
-      },
-      {
-        "name": "BAIR Blog",
-        "url": "https://bair.berkeley.edu/blog/feed.xml",
-        "enabled": true,
-        "category": "ai-research"
-      }
+      {"name": "OpenAI News", "url": "https://openai.com/news/rss.xml", "enabled": true, "category": "ai-video-models"},
+      {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml", "enabled": true, "category": "ai-video-open-source"},
+      {"name": "Google AI Blog", "url": "https://blog.google/technology/ai/rss/", "enabled": true, "category": "ai-video-models"},
+      {"name": "Google DeepMind Blog", "url": "https://deepmind.google/blog/rss.xml", "enabled": true, "category": "ai-video-research"}
     ],
     "reddit": {
       "enabled": true,
       "subreddits": [
-        {
-          "subreddit": "MachineLearning",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 20,
-          "min_score": 50
-        },
-        {
-          "subreddit": "LocalLLaMA",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 20,
-          "min_score": 25
-        },
-        {
-          "subreddit": "OpenAI",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 15,
-          "min_score": 20
-        },
-        {
-          "subreddit": "StableDiffusion",
-          "enabled": true,
-          "sort": "hot",
-          "time_filter": "day",
-          "fetch_limit": 15,
-          "min_score": 25
-        }
+        {"subreddit": "StableDiffusion", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 25, "min_score": 20},
+        {"subreddit": "comfyui", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 10},
+        {"subreddit": "aivideo", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 10},
+        {"subreddit": "generativeAI", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 15, "min_score": 15}
       ],
       "users": [],
       "fetch_comments": 5
     },
     "twitter": {
       "enabled": false,
-      "users": [
-        "karpathy",
-        "sama",
-        "demishassabis",
-        "simonw",
-        "ylecun"
-      ],
+      "users": ["runwayml", "pika_labs", "LumaLabsAI", "Kling_ai", "Hailuo_AI"],
       "fetch_limit": 10,
       "fetch_reply_text": false,
       "max_replies_per_tweet": 3,
@@ -281,27 +73,16 @@
       "watchlists": []
     },
     "ossinsight": {
-      "enabled": false,
+      "enabled": true,
       "period": "past_24_hours",
-      "languages": [
-        "All",
-        "Python",
-        "TypeScript"
-      ],
-      "keywords": [
-        "ai",
-        "llm",
-        "agent",
-        "rag",
-        "mcp",
-        "diffusion"
-      ],
-      "min_stars": 50,
+      "languages": ["All", "Python", "TypeScript"],
+      "keywords": ["text-to-video", "image-to-video", "video generation", "comfyui", "digital human", "lip sync", "wan", "sora"],
+      "min_stars": 20,
       "max_items": 30
     }
   },
   "filtering": {
-    "ai_score_threshold": 6.5,
+    "ai_score_threshold": 6.0,
     "time_window_hours": 24
   },
   "webhook": {
@@ -317,29 +98,16 @@
       "msg_type": "interactive",
       "card": {
         "schema": "2.0",
-        "config": {
-          "wide_screen_mode": true
-        },
+        "config": {"wide_screen_mode": true},
         "header": {
-          "title": {
-            "tag": "plain_text",
-            "content": "#{message_title}"
-          },
+          "title": {"tag": "plain_text", "content": "#{message_title}"},
           "template": "blue"
         },
         "body": {
           "elements": [
-            {
-              "tag": "markdown",
-              "content": "Horizon AI 博主与创作者资讯雷达：#{result}\n重要资讯数量：#{important_items}/#{all_items}"
-            },
-            {
-              "tag": "hr"
-            },
-            {
-              "tag": "markdown",
-              "content": "#{summary}"
-            }
+            {"tag": "markdown", "content": "AI 视频创作资讯雷达：#{result}\n重要资讯数量：#{important_items}/#{all_items}"},
+            {"tag": "hr"},
+            {"tag": "markdown", "content": "#{summary}"}
           ]
         }
       }
