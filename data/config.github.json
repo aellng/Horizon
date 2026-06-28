@@ -18,22 +18,21 @@
     "imap_server": "imap.qq.com",
     "imap_port": 993,
     "email_address": "xxx@qq.com",
-    "sender_name": "AI 视频创作日报",
+    "sender_name": "AI创作动漫日报",
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
   },
   "sources": {
     "github": [
-      {"type": "repo_releases", "owner": "Comfy-Org", "repo": "ComfyUI", "enabled": true},
-      {"type": "repo_releases", "owner": "Wan-Video", "repo": "Wan2.1", "enabled": true},
-      {"type": "repo_releases", "owner": "Tencent-Hunyuan", "repo": "HunyuanVideo", "enabled": true},
-      {"type": "repo_releases", "owner": "Lightricks", "repo": "LTX-Video", "enabled": true},
-      {"type": "repo_releases", "owner": "THUDM", "repo": "CogVideo", "enabled": true},
-      {"type": "repo_releases", "owner": "hpcaitech", "repo": "Open-Sora", "enabled": true},
-      {"type": "repo_releases", "owner": "KwaiVGI", "repo": "LivePortrait", "enabled": true},
-      {"type": "repo_releases", "owner": "Rudrabha", "repo": "Wav2Lip", "enabled": true},
+      {"type": "repo_releases", "owner": "comfyanonymous", "repo": "ComfyUI", "enabled": true},
+      {"type": "repo_releases", "owner": "AUTOMATIC1111", "repo": "stable-diffusion-webui", "enabled": true},
+      {"type": "repo_releases", "owner": "lllyasviel", "repo": "stable-diffusion-webui-forge", "enabled": true},
+      {"type": "repo_releases", "owner": "Mikubill", "repo": "sd-webui-controlnet", "enabled": true},
+      {"type": "repo_releases", "owner": "kohya-ss", "repo": "sd-scripts", "enabled": true},
       {"type": "repo_releases", "owner": "huggingface", "repo": "diffusers", "enabled": true},
-      {"type": "repo_releases", "owner": "huggingface", "repo": "transformers", "enabled": true}
+      {"type": "repo_releases", "owner": "TencentARC", "repo": "PhotoMaker", "enabled": true},
+      {"type": "repo_releases", "owner": "xinntao", "repo": "Real-ESRGAN", "enabled": true},
+      {"type": "repo_releases", "owner": "Sanster", "repo": "IOPaint", "enabled": true}
     ],
     "hackernews": {
       "enabled": true,
@@ -41,25 +40,25 @@
       "min_score": 80
     },
     "rss": [
-      {"name": "OpenAI News", "url": "https://openai.com/news/rss.xml", "enabled": true, "category": "ai-video-models"},
-      {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml", "enabled": true, "category": "ai-video-open-source"},
-      {"name": "Google AI Blog", "url": "https://blog.google/technology/ai/rss/", "enabled": true, "category": "ai-video-models"},
-      {"name": "Google DeepMind Blog", "url": "https://deepmind.google/blog/rss.xml", "enabled": true, "category": "ai-video-research"}
+      {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml", "enabled": true, "category": "ai-creation-anime"},
+      {"name": "Stability AI News", "url": "https://stability.ai/news?format=rss", "enabled": true, "category": "ai-art-generation"},
+      {"name": "Civitai Articles", "url": "https://civitai.com/articles/rss", "enabled": true, "category": "ai-art-anime-models"}
     ],
     "reddit": {
       "enabled": true,
       "subreddits": [
-        {"subreddit": "StableDiffusion", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 25, "min_score": 20},
-        {"subreddit": "comfyui", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 10},
-        {"subreddit": "aivideo", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 10},
-        {"subreddit": "generativeAI", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 15, "min_score": 15}
+        {"subreddit": "StableDiffusion", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 30, "min_score": 20},
+        {"subreddit": "aiArt", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 25, "min_score": 10},
+        {"subreddit": "AnimeART", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 25, "min_score": 10},
+        {"subreddit": "WaifuDiffusion", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 5},
+        {"subreddit": "comfyui", "enabled": true, "sort": "hot", "time_filter": "day", "fetch_limit": 20, "min_score": 10}
       ],
       "users": [],
       "fetch_comments": 5
     },
     "twitter": {
       "enabled": false,
-      "users": ["runwayml", "pika_labs", "LumaLabsAI", "Kling_ai", "Hailuo_AI"],
+      "users": [],
       "fetch_limit": 10,
       "fetch_reply_text": false,
       "max_replies_per_tweet": 3,
@@ -76,7 +75,7 @@
       "enabled": true,
       "period": "past_24_hours",
       "languages": ["All", "Python", "TypeScript"],
-      "keywords": ["text-to-video", "image-to-video", "video generation", "comfyui", "digital human", "lip sync", "wan", "sora"],
+      "keywords": ["anime ai", "ai anime", "AI art", "AI illustration", "Stable Diffusion", "ComfyUI", "LoRA", "ControlNet", "character generation", "anime diffusion", "waifu diffusion", "image generation"],
       "min_stars": 20,
       "max_items": 30
     }
@@ -105,7 +104,7 @@
         },
         "body": {
           "elements": [
-            {"tag": "markdown", "content": "AI 视频创作资讯雷达：#{result}\n重要资讯数量：#{important_items}/#{all_items}"},
+            {"tag": "markdown", "content": "AI创作动漫资讯雷达：#{result}\n重要资讯数量：#{important_items}/#{all_items}"},
             {"tag": "hr"},
             {"tag": "markdown", "content": "#{summary}"}
           ]
