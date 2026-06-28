@@ -18,7 +18,7 @@
     "imap_server": "imap.qq.com",
     "imap_port": 993,
     "email_address": "xxx@qq.com",
-    "sender_name": "AI创作动漫日报",
+    "sender_name": "AI创作+动漫日报",
     "subscribe_keyword": "SUBSCRIBE",
     "unsubscribe_keyword": "UNSUBSCRIBE"
   },
@@ -104,7 +104,7 @@
         },
         "body": {
           "elements": [
-            {"tag": "markdown", "content": "AI创作动漫资讯雷达：#{result}\n重要资讯数量：#{important_items}/#{all_items}"},
+            {"tag": "markdown", "content": "AI创作+动漫资讯雷达：#{result}\n重要资讯数量：#{important_items}/#{all_items}"},
             {"tag": "hr"},
             {"tag": "markdown", "content": "#{summary}"}
           ]
